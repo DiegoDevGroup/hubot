@@ -10,5 +10,6 @@
   "hubot-rules",
   "hubot-shipit",
   "hubot-plusplus",
-  "hubot-reddit"
+  "hubot-reddit",
+  "hubot-heroku-keepalive"
 ]
