@@ -21,9 +21,10 @@ module.exports = (robot) ->
   robot.respond /next (.*) meetup/i, (msg) ->
     groupType = msg.match[1]
     if groupType is "sdphp"
-      msg.http('https://flickering-heat-5459.firebaseio.com/meetups/SanDiegoPHP/summary.json')
-        .get() (err, res, body) ->
-        msg.reply = JSON.parse(body)
+      msg.reply "The next SDPHP MeetUp is"
+      #msg.http('https://flickering-heat-5459.firebaseio.com/meetups/SanDiegoPHP/summary.json')
+        #.get() (err, res, body) ->
+        #msg.reply = JSON.parse(body)
     else if groupType is "sdlug"
       msg.reply "The next SDLUG MeetUp is"
     else
