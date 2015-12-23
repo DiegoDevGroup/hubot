@@ -9,16 +9,6 @@
 #   These are from the scripting documentation: https://github.com/github/hubot/blob/master/docs/scripting.md
 
 module.exports = (robot) ->
-
-  #robot.respond /next (.*) meetup/i, (res) ->
-    #groupType = res.match[1]
-    #if groupType is "sdphp"
-      #res.reply "The next SDPHP MeetUp is"
-    #else if groupType is "sdlug"
-      #res.reply "The next SDLUG MeetUp is"
-    #else
-      #res.reply "Not sure for that group"
-
   # robot.hear /badger/i, (res) ->
   #   res.send "Badgers? BADGERS? WE DON'T NEED NO STINKIN BADGERS"
   #
