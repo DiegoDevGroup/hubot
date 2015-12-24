@@ -14,16 +14,17 @@
 #   ericvanjohnson
 
 
+
 module.exports = (robot) ->
 
   robot.respond /next (.*) meetup/i, (msg) ->
     groupType = msg.match[1]
     if groupType is "sdphp"
       msg.http('https://flickering-heat-5459.firebaseio.com/meetups/SanDiegoPHP/summary.json')
-      .get() (err, res, body) ->
-        result = JSON.parse(body)
+        .get() (err, res, body) ->
+          result = JSON.parse(body)
 
-      msg.reply result.data()
+      msg.reply result.data.child
 
       #msg.reply "The next SDPHP MeetUp is"
       #msg.http('https://flickering-heat-5459.firebaseio.com/meetups/SanDiegoPHP/summary.json')
