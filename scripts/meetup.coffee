@@ -14,17 +14,21 @@
 #   ericvanjohnson
 
 
+request = require 'request'
+
+resp = ""
 
 module.exports = (robot) ->
 
   robot.respond /next (.*) meetup/i, (msg) ->
     groupType = msg.match[1]
     if groupType is "sdphp"
-      msg.http('https://flickering-heat-5459.firebaseio.com/meetups/SanDiegoPHP/summary.json')
-        .get() (err, res, body) ->
-          result = JSON.parse(body)
+      request.get {'https://flickering-heat-5459.firebaseio.com/meetups/SanDiegoPHP/summary.json', json : true}, (err, r, body) ->
+        resp = body
+        msg.reply resp
+#      msg.http('https://flickering-heat-5459.firebaseio.com/meetups/SanDiegoPHP/summary.json')
+#        .get() (err, res, body) ->
 
-      msg.reply result.data.child
 
       #msg.reply "The next SDPHP MeetUp is"
       #msg.http('https://flickering-heat-5459.firebaseio.com/meetups/SanDiegoPHP/summary.json')
