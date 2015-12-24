@@ -24,7 +24,7 @@ module.exports = (robot) ->
     groupType = msg.match[1]
     if groupType is "sdphp"
       request.get {'https://flickering-heat-5459.firebaseio.com/meetups/SanDiegoPHP/summary.json', json : true}, (err, r, body) ->
-        resp = body
+        resp = JSON.parse(body)
         msg.reply resp
 #      msg.http('https://flickering-heat-5459.firebaseio.com/meetups/SanDiegoPHP/summary.json')
 #        .get() (err, res, body) ->
