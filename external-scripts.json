@@ -12,5 +12,6 @@
   "hubot-plusplus",
   "hubot-reddit",
   "hubot-heroku-keepalive",
-  "hubot-tell"
+  "hubot-tell",
+  "hubot-trello"
 ]
