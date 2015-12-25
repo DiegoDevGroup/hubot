@@ -13,27 +13,18 @@
 # Author:
 #   ericvanjohnson
 
-
-request = require 'request'
-
-resp = ""
-
 module.exports = (robot) ->
 
   robot.respond /next (.*) meetup/i, (msg) ->
     groupType = msg.match[1]
     if groupType is "sdphp"
-      request.get {'https://flickering-heat-5459.firebaseio.com/meetups/SanDiegoPHP.json'}, (err, r, body) ->
-        resp = JSON.parse(body)
-        msg.reply resp
-#      msg.http('https://flickering-heat-5459.firebaseio.com/meetups/SanDiegoPHP/summary.json')
-#        .get() (err, res, body) ->
-
-
-      #msg.reply "The next SDPHP MeetUp is"
-      #msg.http('https://flickering-heat-5459.firebaseio.com/meetups/SanDiegoPHP/summary.json')
-        #.get() (err, res, body) ->
-        #msg.reply = JSON.parse(body)
+      url = "https://flickering-heat-5459.firebaseio.com/meetups/SanDiegoPHP.json"
+      msg.http(url)
+        .header('User-Agent', 'Hubot')
+        .get() (err, _, body) ->
+          return msg.send "Sorry, something broke." if err
+          data = JSON.parse(body.toString("utf-8"))
+          msg.send data.summary
     else if groupType is "sdlug"
       msg.reply "The next SDLUG MeetUp is"
     else
