@@ -23,7 +23,7 @@ module.exports = (robot) ->
       url = "https://flickering-heat-5459.firebaseio.com/meetups/San-Diego-Laravel-Meetup.json"
     else
       msg.reply "Not sure for that group"
-      break
+      return
     msg.http(url)
     .header('User-Agent', 'Hubot')
     .get() (err, _, body) ->
