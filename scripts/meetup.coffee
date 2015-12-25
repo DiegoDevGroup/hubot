@@ -15,17 +15,17 @@
 
 module.exports = (robot) ->
 
-  robot.respond /next (.*) meetup/i, (msg) ->
+  robot.respond /.* next (.*) meetup.*/i, (msg) ->
     groupType = msg.match[1]
     if groupType is "sdphp"
       url = "https://flickering-heat-5459.firebaseio.com/meetups/SanDiegoPHP.json"
-      msg.http(url)
-        .header('User-Agent', 'Hubot')
-        .get() (err, _, body) ->
-          return msg.send "Sorry, something broke." if err
-          data = JSON.parse(body.toString("utf-8"))
-          msg.send data.summary
     else if groupType is "sdlug"
-      msg.reply "The next SDLUG MeetUp is"
+      url = "https://flickering-heat-5459.firebaseio.com/meetups/San-Diego-Laravel-Meetup.json"
     else
       msg.reply "Not sure for that group"
+    msg.http(url)
+    .header('User-Agent', 'Hubot')
+    .get() (err, _, body) ->
+      return msg.send "Sorry, something broke." if err
+      data = JSON.parse(body.toString("utf-8"))
+      msg.send data.summary
