@@ -22,10 +22,11 @@ module.exports = (robot) ->
     else if groupType is "sdlug"
       url = "https://flickering-heat-5459.firebaseio.com/meetups/San-Diego-Laravel-Meetup.json"
     else
-      msg.send "Not sure for that group"
+      msg.reply "Not sure for that group"
+      break
     msg.http(url)
     .header('User-Agent', 'Hubot')
     .get() (err, _, body) ->
       return msg.send "Sorry, something broke." if err
       data = JSON.parse(body.toString("utf-8"))
-      msg.send data.summary
+      msg.reply data.summary
